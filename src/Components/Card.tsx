@@ -1,4 +1,4 @@
-import { Text, View, StyleSheet, Image, ImageProps } from "react-native";
+import { Text, View, StyleSheet, Image, ImageProps, StyleProp, ViewStyle, TextStyle } from "react-native";
 
 export interface CardProps {
     avatar: ImageProps;
@@ -6,17 +6,30 @@ export interface CardProps {
     last?: string;
 
     isActive?: boolean;
+
+    cardStyle?: StyleProp<ViewStyle>;
+
+    textStyle?: StyleProp<TextStyle>;
+
 }
 
-export const Card = ({ avatar, name, last, isActive }: CardProps): JSX.Element => {
+export const Card = ({
+    cardStyle,
+    textStyle,
+    avatar,
+    name,
+    last,
+    isActive }: CardProps): JSX.Element => {
     return (
         <View
-            style={styles.container}
+            style={[styles.container, cardStyle]}
         >
             <View style={styles.avatar}>
                 <View style={{
                     ...styles.active,
                     borderWidth: isActive ? 2 : 0,
+                    // borderBottomWidth: isActive ? 2 : 0,
+                    // borderColor: isActive ? 'green' : '#fff',
                 }}>
                     <Image
                         source={avatar}
@@ -27,12 +40,12 @@ export const Card = ({ avatar, name, last, isActive }: CardProps): JSX.Element =
             </View>
 
             <Text
-                style={styles.text}
+                style={[styles.text, textStyle]}
             >
                 {name}
             </Text>
             <Text
-                style={styles.text}
+                style={[styles.text, textStyle]}
             >
                 {last}
             </Text>
@@ -51,8 +64,6 @@ const styles = StyleSheet.create({
         backgroundColor: '#CAD2DB',
         borderRadius: 100,
 
-
-
         justifyContent: 'center',
         alignItems: 'center',
     },
@@ -61,8 +72,8 @@ const styles = StyleSheet.create({
         width: 50,
         borderRadius: 100,
 
+        // borderLeftWidth: 2,
         borderColor: 'green',
-
 
         justifyContent: 'center',
         alignItems: 'center',

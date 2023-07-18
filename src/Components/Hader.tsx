@@ -1,16 +1,22 @@
-import { ScrollView, StyleSheet, TextInput, View } from "react-native";
+import { ScrollView, StyleSheet, TextInput, View, TouchableOpacity } from "react-native";
 import { Card, CardProps } from "./Card";
 
 
 const userList: CardProps[] = [
-    { name: 'Sofia', last: 'Lina', avatar: require( '../public/avatar.png'), isActive: false, },
-    { name: 'Sonia', last: 'Mejia', avatar: require( '../public/avatar.png'), isActive: true},
-    { name: 'Cristina', last: 'Munoz',  avatar: require( '../public/avatar.png'), isActive: true},
-    { name: 'Jose', last: 'Mejia',  avatar: require( '../public/avatar.png'), isActive: false},
-    { name: 'Reynaldo', last: 'Mejia',  avatar: require( '../public/avatar.png'), isActive: false},
-    { name: 'Maria', last: 'Mejia',  avatar: require( '../public/avatar.png'),isActive: true},
-    { name: 'Reynaldo', last: 'Mejia',  avatar: require( '../public/avatar.png'), isActive: true},
-    { name: 'Maria', last: 'Mejia',  avatar: require( '../public/avatar.png'), isActive: true},
+    { name: 'Sofia', last: 'Lina', avatar: require('../public/avatar.png'), isActive: true, },
+    { name: 'Sonia', last: 'Mejia', avatar: require('../public/avatar.png'), isActive: true },
+    { name: 'Cristina', last: 'Munoz', avatar: require('../public/avatar.png'), isActive: false },
+    { name: 'Jose', last: 'Mejia', avatar: require('../public/avatar.png'), isActive: false },
+    { name: 'Reynaldo', last: 'Mejia', avatar: require('../public/avatar.png'), isActive: false },
+    { name: 'Maria', last: 'Mejia', avatar: require('../public/avatar.png'), isActive: true },
+    { name: 'Reynaldo', last: 'Mejia', avatar: require('../public/avatar.png'), isActive: true },
+    { name: 'Maria', last: 'Mejia', avatar: require('../public/avatar.png'), isActive: true },
+    { name: 'Maria', last: 'Mejia', avatar: require('../public/avatar.png'), isActive: true },
+    { name: 'Reynaldo', last: 'Mejia', avatar: require('../public/avatar.png'), isActive: true },
+    { name: 'Maria', last: 'Mejia', avatar: require('../public/avatar.png'), isActive: true },
+    { name: 'Maria', last: 'Mejia', avatar: require('../public/avatar.png'), isActive: true },
+    { name: 'Reynaldo', last: 'Mejia', avatar: require('../public/avatar.png'), isActive: true },
+    { name: 'Maria', last: 'Mejia', avatar: require('../public/avatar.png'), isActive: true },
 ]
 
 
@@ -18,11 +24,12 @@ export const Header = (): JSX.Element => {
 
     const list = userList.map((user, index) => {
         return (
-            <View
+            <TouchableOpacity
                 key={index}
                 style={{
                     marginHorizontal: 2,
-                    marginTop: 2
+                    marginTop: 2,
+                    justifyContent: 'flex-start'
                 }}
             >
                 <Card
@@ -30,8 +37,9 @@ export const Header = (): JSX.Element => {
                     last={user.last}
                     avatar={user.avatar}
                     isActive={user.isActive}
+
                 />
-            </View>
+            </TouchableOpacity>
         )
     })
 
