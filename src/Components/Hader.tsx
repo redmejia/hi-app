@@ -1,4 +1,4 @@
-import { ScrollView, StyleSheet, TextInput, View, TouchableOpacity } from "react-native";
+import { ScrollView, StyleSheet, TextInput, View, TouchableOpacity, Text } from "react-native";
 import { Card, CardProps } from "./Card";
 
 
@@ -29,15 +29,21 @@ export const Header = (): JSX.Element => {
                 style={{
                     marginHorizontal: 2,
                     marginTop: 2,
-                    justifyContent: 'flex-start'
+                    justifyContent: 'flex-start',
                 }}
             >
                 <Card
-                    name={user.name}
-                    last={user.last}
+                    // name={user.name}
+                    // last={user.last}
+                    userComponent={
+                        <View style={{ justifyContent: 'center', alignItems: 'center' }}>
+                            <Text style={styles.text}>{user.name}</Text>
+                            <Text style={styles.text}>{user.last}</Text>
+                        </View>
+                    }
                     avatar={user.avatar}
                     isActive={user.isActive}
-
+                    cardStyle={{ flexDirection: 'column' }}
                 />
             </TouchableOpacity>
         )
@@ -68,7 +74,7 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
     },
     search: {
-        backgroundColor: '#F7F9FA',
+        backgroundColor: '#D1D7DC',
         borderRadius: 100,
         height: 40,
         justifyContent: 'center',
@@ -80,6 +86,16 @@ const styles = StyleSheet.create({
         // paddingLeft: 10,
         height: 83,
         marginTop: 4,
+
+    },
+    text: {
+        textAlign: 'center',
+
+        color: '#000',
+        fontWeight: '600',
+        fontSize: 9,
+        marginLeft: 10
+
 
     }
 });

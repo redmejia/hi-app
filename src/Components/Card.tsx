@@ -1,30 +1,39 @@
-import { Text, View, StyleSheet, Image, ImageProps, StyleProp, ViewStyle, TextStyle } from "react-native";
+import {
+    View,
+    StyleSheet,
+    Image,
+    ImageProps,
+    StyleProp,
+    ViewStyle
+} from "react-native";
 
 export interface CardProps {
-    avatar: ImageProps;
     name?: string;
     last?: string;
+    lastMsg?: string;
+    isActive: boolean;
 
-    isActive?: boolean;
 
+
+    userComponent?: React.ReactNode; // user info or user info and  last msg recived
+    avatar: ImageProps;
     cardStyle?: StyleProp<ViewStyle>;
 
-    textStyle?: StyleProp<TextStyle>;
 
 }
 
 export const Card = ({
     cardStyle,
-    textStyle,
     avatar,
-    name,
-    last,
-    isActive }: CardProps): JSX.Element => {
+    userComponent,
+    isActive
+}: CardProps): JSX.Element => {
     return (
         <View
             style={[styles.container, cardStyle]}
         >
             <View style={styles.avatar}>
+
                 <View style={{
                     ...styles.active,
                     borderWidth: isActive ? 2 : 0,
@@ -35,21 +44,9 @@ export const Card = ({
                         source={avatar}
                         style={{ height: 40, width: 40 }}
                     />
-
                 </View>
             </View>
-
-            <Text
-                style={[styles.text, textStyle]}
-            >
-                {name}
-            </Text>
-            <Text
-                style={[styles.text, textStyle]}
-            >
-                {last}
-            </Text>
-
+            {userComponent}
         </View>
     );
 };

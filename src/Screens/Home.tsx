@@ -7,7 +7,9 @@ export const Home = (): JSX.Element => {
 
 
     return (
-        <ScrollView>
+        <ScrollView
+            showsVerticalScrollIndicator={false}
+        >
             <Header />
             <ChatList />
         </ScrollView>
