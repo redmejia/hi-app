@@ -1,4 +1,4 @@
-import { ScrollView, View } from "react-native";
+import { ScrollView } from "react-native";
 import { Header } from "../Components/Hader";
 import { ChatList } from "../Components/ChatList";
 
