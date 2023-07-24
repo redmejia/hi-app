@@ -9,6 +9,7 @@ import {
     TouchableWithoutFeedback,
     View,
     useWindowDimensions,
+    TouchableOpacity,
 } from "react-native";
 import { HeaderChat } from "../Components/HeaderChat";
 import { useState } from "react";
@@ -54,24 +55,53 @@ export const Chat = (): JSX.Element => {
             </ScrollView>
             <KeyboardAvoidingView
                 behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
-                // style={styles.container}
+            // style={styles.container}
             >
                 <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
 
                     <View
                         style={{
-                            width: '100%',
                             padding: 10,
                             bottom: Platform.OS === 'ios' ? 60 : 0,
-                            backgroundColor: '#fff'
+                            backgroundColor: '#fff',
+
                         }}
                     >
-                        <TextInput
-                            placeholder="Say Hi"
-                            onChangeText={newText => setChat(newText)}
-                            style={styles.textInput}
-                        />
+                        <View
+                            style={{
+                                backgroundColor: '#fff',
+                                flexDirection: 'row',
 
+                            }}
+
+                        >
+
+                            <TextInput
+                                placeholder="Say Hi"
+                                onChangeText={newText => setChat(newText)}
+                                style={styles.textInput}
+                            />
+
+                            {
+                                chat.length !== 0 && (
+                                    <TouchableOpacity>
+                                        <View
+                                            style={{
+                                                justifyContent: 'center',
+                                                alignItems: 'center',
+                                                width: 40,
+                                                height: 40,
+                                                borderRadius: 100,
+                                                backgroundColor: '#33A3FF'
+                                            }}
+                                        >
+                                        </View>
+                                    </TouchableOpacity>
+
+                                )
+
+                            }
+                        </View>
                     </View>
                 </TouchableWithoutFeedback>
             </KeyboardAvoidingView>
@@ -97,8 +127,10 @@ const styles = StyleSheet.create({
 
     },
 
-  
+
     textInput: {
+        flex: 1,
+        marginHorizontal: 4,
         backgroundColor: '#D1D7DC',
         borderRadius: 100,
         height: 40,
