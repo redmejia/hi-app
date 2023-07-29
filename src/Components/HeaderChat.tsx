@@ -1,13 +1,29 @@
-import { StyleSheet, Text, View } from "react-native";
+import { Image, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import { Card } from "./Card";
+import { Navigathor } from "../Interface/navigationInterface";
 
-export const HeaderChat = (): JSX.Element => {
+export const HeaderChat = ({ navigation, navigate, goBack }: Navigathor): JSX.Element => {
+    
     return (
 
         <View
             style={styles.headerBox}
         >
-            <View style={{ marginHorizontal: 10, height: 20, width: 20, backgroundColor: 'blue' }} />
+            <TouchableOpacity
+
+                // onPress={()=> navigate && navigate(navigation, true, 'home')}
+                onPress={() => goBack && goBack()}
+            >
+                <View
+                    style={styles.backButton}
+                >
+                    <Image
+                        source={require('../public/back.png')}
+                        style={ styles.imageButton }
+                    />
+
+                </View>
+            </TouchableOpacity>
 
             <Card
                 cardStyle={{
@@ -16,12 +32,11 @@ export const HeaderChat = (): JSX.Element => {
                 }}
                 userComponent={
                     <View>
-                        <Text style={styles.cardText}>Reynaldo Mejia</Text>
-
+                        <Text style={styles.cardText}> {navigation.params?.name} {navigation.params?.last} </Text>
                     </View>
                 }
-                avatar={require('../public/avatar.png')}
-                isActive={true}
+                avatar={ navigation.params?.avatar || require('../public/avatar.png')}
+                isActive={navigation.params?.isActive || false}
             />
         </View>
     );
@@ -30,6 +45,22 @@ const styles = StyleSheet.create({
     headerBox: {
         flexDirection: 'row',
         alignItems: 'center'
+    },
+    backButton: {
+        marginLeft: 5,
+        marginRight: 5,
+        height: 40,
+        width: 40,
+        justifyContent: 'center',
+        alignItems: 'center',
+        backgroundColor: '#000',
+        borderRadius: 100
+    },
+    imageButton: {
+        height: 30,
+        width: 30,
+        backgroundColor: '#fff',
+        borderRadius: 100
     },
     cardText: {
         color: '#000',

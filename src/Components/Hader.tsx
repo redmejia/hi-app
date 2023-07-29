@@ -1,26 +1,11 @@
 import { ScrollView, StyleSheet, TextInput, View, TouchableOpacity, Text } from "react-native";
-import { Card, CardProps } from "./Card";
+import { Card  } from "./Card";
+import { userList } from "../Interface/chatInterface";
+import { Navigathor } from "../Interface/navigationInterface";
 
 
-const userList: CardProps[] = [
-    { name: 'Sofia', last: 'Lina', avatar: require('../public/avatar.png'), isActive: true, },
-    { name: 'Sonia', last: 'Mejia', avatar: require('../public/avatar.png'), isActive: true },
-    { name: 'Cristina', last: 'Munoz', avatar: require('../public/avatar.png'), isActive: false },
-    { name: 'Jose', last: 'Mejia', avatar: require('../public/avatar.png'), isActive: false },
-    { name: 'Reynaldo', last: 'Mejia', avatar: require('../public/avatar.png'), isActive: false },
-    { name: 'Maria', last: 'Mejia', avatar: require('../public/avatar.png'), isActive: true },
-    { name: 'Reynaldo', last: 'Mejia', avatar: require('../public/avatar.png'), isActive: true },
-    { name: 'Maria', last: 'Mejia', avatar: require('../public/avatar.png'), isActive: true },
-    { name: 'Maria', last: 'Mejia', avatar: require('../public/avatar.png'), isActive: true },
-    { name: 'Reynaldo', last: 'Mejia', avatar: require('../public/avatar.png'), isActive: true },
-    { name: 'Maria', last: 'Mejia', avatar: require('../public/avatar.png'), isActive: true },
-    { name: 'Maria', last: 'Mejia', avatar: require('../public/avatar.png'), isActive: true },
-    { name: 'Reynaldo', last: 'Mejia', avatar: require('../public/avatar.png'), isActive: true },
-    { name: 'Maria', last: 'Mejia', avatar: require('../public/avatar.png'), isActive: true },
-]
 
-
-export const Header = (): JSX.Element => {
+export const Header = ({navigation, navigate}:Navigathor): JSX.Element => {
 
     const list = userList.map((user, index) => {
         return (
@@ -31,6 +16,7 @@ export const Header = (): JSX.Element => {
                     marginTop: 2,
                     justifyContent: 'flex-start',
                 }}
+                onPress={() =>  navigate && navigate(navigation, false, 'chat', user)}
             >
                 <Card
                     // name={user.name}

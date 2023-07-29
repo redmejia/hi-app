@@ -2,24 +2,14 @@ import {
     View,
     StyleSheet,
     Image,
-    ImageProps,
     StyleProp,
     ViewStyle
 } from "react-native";
+import { User } from "../Interface/chatInterface";
 
-export interface CardProps {
-    name?: string;
-    last?: string;
-    lastMsg?: string;
-    isActive: boolean;
-
-
-
+export interface Props extends User {
     userComponent?: React.ReactNode; // user info or user info and  last msg recived
-    avatar: ImageProps;
     cardStyle?: StyleProp<ViewStyle>;
-
-
 }
 
 export const Card = ({
@@ -27,7 +17,7 @@ export const Card = ({
     avatar,
     userComponent,
     isActive
-}: CardProps): JSX.Element => {
+}: Props): JSX.Element => {
     return (
         <View
             style={[styles.container, cardStyle]}
