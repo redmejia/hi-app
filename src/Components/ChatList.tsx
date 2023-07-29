@@ -1,22 +1,12 @@
 import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
-import { Card, CardProps } from "./Card";
+import { Card } from "./Card";
+import {  userList } from "../Interface/chatInterface";
+import { Navigathor } from "../Interface/navigationInterface";
 
-const userList: CardProps[] = [
-    { name: 'Sofia', last: 'Lina', avatar: require('../public/avatar.png'), isActive: false, lastMsg: 'hola' },
-    { name: 'Sonia', last: 'Mejia', avatar: require('../public/avatar.png'), isActive: true },
-    { name: 'Cristina', last: 'Munoz', avatar: require('../public/avatar.png'), isActive: true, lastMsg:'this is a test, bye' },
-    { name: 'Jose', last: 'Mejia', avatar: require('../public/avatar.png'), isActive: false },
-    { name: 'Reynaldo', last: 'Mejia', avatar: require('../public/avatar.png'), isActive: false },
-    { name: 'Maria', last: 'Mejia', avatar: require('../public/avatar.png'), isActive: true },
-    { name: 'Reynaldo', last: 'Mejia', avatar: require('../public/avatar.png'), isActive: true },
-    { name: 'Maria', last: 'Mejia', avatar: require('../public/avatar.png'), isActive: true },
-    { name: 'Reynaldo', last: 'Mejia', avatar: require('../public/avatar.png'), isActive: false },
-    { name: 'Maria', last: 'Mejia', avatar: require('../public/avatar.png'), isActive: true },
-    { name: 'Reynaldo', last: 'Mejia', avatar: require('../public/avatar.png'), isActive: true },
-    { name: 'Maria', last: 'Mejia', avatar: require('../public/avatar.png'), isActive: true },
-]
 
-export const ChatList = (): JSX.Element => {
+
+
+export const ChatList = ({ navigation, navigate }:Navigathor): JSX.Element => {
     const chatList = userList.map((user, index) => {
         return (
             <TouchableOpacity
@@ -25,6 +15,7 @@ export const ChatList = (): JSX.Element => {
                     // marginHorizontal: 2,
                     marginTop: 5
                 }}
+                onPress={() =>  navigate && navigate(navigation, false, 'chat', user)}
             >
                 <Card
                     userComponent={
@@ -56,7 +47,7 @@ export const ChatList = (): JSX.Element => {
 const styles = StyleSheet.create({
     text: {
         color: '#000',
-        fontWeight:'600',
+        fontWeight: '600',
         fontSize: 11,
         marginLeft: 10
     }
