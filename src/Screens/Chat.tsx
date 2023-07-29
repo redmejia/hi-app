@@ -10,7 +10,6 @@ import {
     View,
     useWindowDimensions,
     TouchableOpacity,
-    Button,
     Image,
 } from "react-native";
 import { HeaderChat } from "../Components/HeaderChat";
@@ -18,6 +17,17 @@ import { useState } from "react";
 import { Navigathor } from "../Interface/navigationInterface";
 
 
+
+
+const lenMessage = (message: string): number  => {
+    
+    
+    if (message.length === 1) {
+        return 30
+    }
+    return message.length + 18
+
+}
 
 
 export const Chat = ({ navigation, navigate, goBack }: Navigathor): JSX.Element => {
@@ -33,7 +43,9 @@ export const Chat = ({ navigation, navigate, goBack }: Navigathor): JSX.Element 
 
 
 
-    const { height } = useWindowDimensions()
+    const {  width } = useWindowDimensions()
+
+
 
     return (
         <View style={{ flex: 1 }} >
@@ -63,9 +75,10 @@ export const Chat = ({ navigation, navigate, goBack }: Navigathor): JSX.Element 
                         <View
                             style={{
                                 ...styles.chatBox,
-                                justifyContent:'flex-start',
-                                marginVertical: 10,
-                                backgroundColor: '#E5E5EA'
+                                backgroundColor: '#E5E5EA',
+                                margin: 10,
+                                marginRight: width / 2,
+                                height: lenMessage(navigation.params?.lastMsg)
                             }}
                         >
                             <Text>{navigation.params?.lastMsg}</Text>
@@ -74,14 +87,21 @@ export const Chat = ({ navigation, navigate, goBack }: Navigathor): JSX.Element 
                     )
                 }
 
+
                 {
                     send &&
                     <View
-                        style={{ ...styles.chatBox}}
+                        style={{
+                            ...styles.chatBox,
+                            margin: 10,
+                            marginTop: 20,
+                            // alignItems: 'center',
+                            marginLeft: width / 2,
+                            height: lenMessage(chat) 
+                        }}
                     >
-
                         <Text
-                            style={styles.chatText}
+                            style={{ ...styles.chatText }}
                         >{chat}</Text>
                     </View>
                 }
@@ -186,13 +206,13 @@ const styles = StyleSheet.create({
         borderRadius: 100
     },
     chatBox: {
-        flexDirection: 'row',
+        // flexDirection: 'row',
 
         backgroundColor: 'rgba(59, 127, 204, 0.10)',
-        borderRadius: 100,
-        height: 30,
-        justifyContent: 'flex-end',
+        borderRadius: 10,
+        justifyContent: 'center',
         paddingLeft: 10,
+        // margin: 10,
         alignItems: 'center'
 
 
