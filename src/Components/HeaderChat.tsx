@@ -2,7 +2,7 @@ import { Image, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import { Card } from "./Card";
 import { Navigathor } from "../Interface/navigationInterface";
 
-export const HeaderChat = ({ navigation, navigate, goBack }: Navigathor): JSX.Element => {
+export const HeaderChat = ({ navigation, goBack }: Navigathor): JSX.Element => {
     
     return (
 
