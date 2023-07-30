@@ -1,27 +1,49 @@
-import { ScrollView } from "react-native";
+import {
+    Button,
+    DrawerLayoutAndroid,
+    ScrollView,
+    StyleSheet,
+    Text,
+    TouchableOpacity,
+    View
+} from "react-native";
 import { Header } from "../Components/Hader";
 import { ChatList } from "../Components/ChatList";
 import { Navigathor } from "../Interface/navigationInterface";
+import { useRef } from "react";
+import { AndroidDrawer } from "../Components/AndroidDrawer";
 
 
 
-export const Home = ({navigate, navigation}:Navigathor): JSX.Element => {
 
-    
+
+export const Home = ({ navigate, navigation }: Navigathor): JSX.Element => {
 
     return (
-        <ScrollView
-            showsVerticalScrollIndicator={false}
-        >
-            <Header
+        <>
+
+
+
+
+
+            <AndroidDrawer
                 navigation={navigation}
                 navigate={navigate}
             />
-            <ChatList 
-                navigation={navigation}
-                navigate={navigate}
-            />
-        </ScrollView>
+            {/* <ScrollView
+                showsVerticalScrollIndicator={false}
+            > */}
+                {/* <Header
+                    navigation={navigation}
+                    navigate={navigate}
+                /> */}
+                {/* <ChatList
+                    navigation={navigation}
+                    navigate={navigate}
+                /> */}
+            {/* </ScrollView> */}
+
+        </>
     );
 };
 

@@ -3,18 +3,23 @@ import {
     StyleSheet,
     Image,
     StyleProp,
-    ViewStyle
+    ViewStyle,
+    ImageStyle
 } from "react-native";
 import { User } from "../Interface/chatInterface";
 
 export interface Props extends User {
     userComponent?: React.ReactNode; // user info or user info and  last msg recived
     cardStyle?: StyleProp<ViewStyle>;
+    imageStyle?: StyleProp<ImageStyle>;
+    avatarContainer?: StyleProp<ImageStyle>;
 }
 
 export const Card = ({
     cardStyle,
     avatar,
+    avatarContainer,
+    imageStyle,
     userComponent,
     isActive
 }: Props): JSX.Element => {
@@ -22,7 +27,7 @@ export const Card = ({
         <View
             style={[styles.container, cardStyle]}
         >
-            <View style={styles.avatar}>
+            <View style={[styles.avatar, avatarContainer]}>
 
                 <View style={{
                     ...styles.active,
@@ -32,7 +37,7 @@ export const Card = ({
                 }}>
                     <Image
                         source={avatar}
-                        style={{ height: 40, width: 40 }}
+                        style={[styles.imageSizeStyle, imageStyle]}
                     />
                 </View>
             </View>
@@ -46,8 +51,8 @@ const styles = StyleSheet.create({
         flex: 1,
     },
     avatar: {
-        height: 55,
-        width: 55,
+        // height: 55,
+        // width: 55,
         backgroundColor: '#CAD2DB',
         borderRadius: 100,
 
@@ -69,5 +74,9 @@ const styles = StyleSheet.create({
         color: '#000',
         fontSize: 10,
         textAlign: 'center',
+    },
+    imageSizeStyle: {
+        height: 40,
+        width: 40
     }
 });
