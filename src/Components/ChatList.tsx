@@ -4,8 +4,6 @@ import {  userList } from "../Interface/chatInterface";
 import { Navigathor } from "../Interface/navigationInterface";
 
 
-
-
 export const ChatList = ({ navigation, navigate }:Navigathor): JSX.Element => {
     const chatList = userList.map((user, index) => {
         return (
@@ -37,7 +35,7 @@ export const ChatList = ({ navigation, navigate }:Navigathor): JSX.Element => {
     })
     return (
         <View
-            style={{ marginHorizontal: 10, marginTop: 6 }}
+            style={{ marginHorizontal: 10, marginTop: 2, marginBottom: 4 }}
         >
             {chatList}
         </View>

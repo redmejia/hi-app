@@ -1,9 +1,19 @@
 import { useRef } from "react";
-import { Button, DrawerLayoutAndroid, Image, ScrollView, StyleSheet, Text, TouchableOpacity, View } from "react-native";
+import {
+    // Button,
+    DrawerLayoutAndroid,
+    Image,
+    ScrollView,
+    StyleSheet,
+    Text,
+    TouchableOpacity,
+    View
+} from "react-native";
 import { Header } from "./Hader";
 import { Navigathor } from "../Interface/navigationInterface";
 import { ChatList } from "./ChatList";
 import { Card } from "./Card";
+import { Button } from "../Components/Button";
 
 
 export const AndroidDrawer = ({ navigation, navigate }: Navigathor): JSX.Element => {
@@ -18,8 +28,13 @@ export const AndroidDrawer = ({ navigation, navigate }: Navigathor): JSX.Element
                     style={styles.header}
                 >
                     <Button
-                        title="Close"
-                        onPress={() => drawer.current?.closeDrawer()}
+                        action={() => drawer.current?.closeDrawer()}
+                        buttonContent={
+                            <Image
+                                source={require('../public/back.png')}
+                                style={styles.imageButton}
+                            />
+                        }
                     />
                     <TouchableOpacity>
                         <Card
@@ -54,11 +69,14 @@ export const AndroidDrawer = ({ navigation, navigate }: Navigathor): JSX.Element
                     showsVerticalScrollIndicator={false}
                 >
                     <View style={styles.header}>
-                        <View style={styles.settingButton}>
-                            <TouchableOpacity
-                                activeOpacity={0.7}
-                                onPress={() => drawer.current?.openDrawer()}
-                            >
+                        <Button
+                            action={() => drawer.current?.openDrawer()}
+                            buttonStyle={{
+                                backgroundColor: '#D1D7DC',
+                                height: 26,
+                                width: 26,
+                            }}
+                            buttonContent={
                                 <Image
                                     source={require('../public/setting-dark.png')}
                                     style={{
@@ -66,8 +84,8 @@ export const AndroidDrawer = ({ navigation, navigate }: Navigathor): JSX.Element
                                         width: 20,
                                     }}
                                 />
-                            </TouchableOpacity>
-                        </View>
+                            }
+                        />
                         {/* <TouchableOpacity>
                                 <Card
                                     avatar={require('../public/avatar.png')}
@@ -114,15 +132,13 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         paddingVertical: 5,
         paddingHorizontal: 10,
-        height: 60,
+        height: 40, // or change to 60 for display user avatar on right
+        marginBottom: 5,
     },
-    settingButton: {
-        justifyContent: 'center',
-        alignItems: 'center',
-        height: 25,
-        width: 25,
-        borderRadius: 100,
-        backgroundColor: '#D1D7DC',
-        marginVertical: 5
+    imageButton: {
+        height: 30,
+        width: 30,
+        backgroundColor: '#fff',
+        borderRadius: 100
     }
 });
