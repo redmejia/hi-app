@@ -1,30 +1,29 @@
 import { Image, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import { Card } from "./Card";
 import { Navigathor } from "../Interface/navigationInterface";
+import { Button } from "./Button";
 
 export const HeaderChat = ({ navigation, goBack }: Navigathor): JSX.Element => {
-    
+
     return (
 
         <View
             style={styles.headerBox}
         >
-            <TouchableOpacity
 
-                // onPress={()=> navigate && navigate(navigation, true, 'home')}
-                onPress={() => goBack && goBack()}
-            >
-                <View
-                    style={styles.backButton}
-                >
+            <Button
+                action={() => {
+                    // navigate && navigate(navigation, true, 'home')}
+                    goBack && goBack()
+                }}
+                buttonStyle={{ marginLeft: 10, marginRight: 5 }}
+                buttonContent={
                     <Image
                         source={require('../public/back.png')}
-                        style={ styles.imageButton }
+                        style={styles.imageButton}
                     />
-
-                </View>
-            </TouchableOpacity>
-
+                }
+            />
             <Card
                 cardStyle={{
                     flexDirection: 'row',
@@ -35,7 +34,7 @@ export const HeaderChat = ({ navigation, goBack }: Navigathor): JSX.Element => {
                         <Text style={styles.cardText}> {navigation.params?.name} {navigation.params?.last} </Text>
                     </View>
                 }
-                avatar={ navigation.params?.avatar || require('../public/avatar.png')}
+                avatar={navigation.params?.avatar || require('../public/avatar.png')}
                 isActive={navigation.params?.isActive || false}
             />
         </View>

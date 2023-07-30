@@ -9,19 +9,19 @@ import {
     TouchableWithoutFeedback,
     View,
     useWindowDimensions,
-    TouchableOpacity,
     Image,
 } from "react-native";
 import { HeaderChat } from "../Components/HeaderChat";
 import { useState } from "react";
 import { Navigathor } from "../Interface/navigationInterface";
+import { Button } from "../Components/Button";
 
 
 
 
-const lenMessage = (message: string): number  => {
-    
-    
+const lenMessage = (message: string): number => {
+
+
     if (message.length === 1) {
         return 30
     }
@@ -43,7 +43,7 @@ export const Chat = ({ navigation, navigate, goBack }: Navigathor): JSX.Element 
 
 
 
-    const {  width } = useWindowDimensions()
+    const { width } = useWindowDimensions()
 
 
 
@@ -97,7 +97,7 @@ export const Chat = ({ navigation, navigate, goBack }: Navigathor): JSX.Element 
                             marginTop: 20,
                             // alignItems: 'center',
                             marginLeft: width / 2,
-                            height: lenMessage(chat) 
+                            height: lenMessage(chat)
                         }}
                     >
                         <Text
@@ -139,23 +139,20 @@ export const Chat = ({ navigation, navigate, goBack }: Navigathor): JSX.Element 
 
                             {
                                 text.length !== 0 && (
-                                    <TouchableOpacity
-                                        onPress={() => {
+                                    <Button
+                                        action={() => {
                                             setSend(true)
                                             setChat(text)
                                             setText("")
                                         }}
 
-                                    >
-                                        <View
-                                            style={styles.sendButton}
-                                        >
+                                        buttonContent={
                                             <Image
                                                 source={require('../public/next.png')}
                                                 style={styles.imageButton}
                                             />
-                                        </View>
-                                    </TouchableOpacity>
+                                        }
+                                    />
                                 )
                             }
                         </View>
@@ -190,14 +187,6 @@ const styles = StyleSheet.create({
         height: 40,
         justifyContent: 'center',
         paddingLeft: 10,
-    },
-    sendButton: {
-        justifyContent: 'center',
-        alignItems: 'center',
-        width: 40,
-        height: 40,
-        borderRadius: 100,
-        backgroundColor: '#33A3FF'
     },
     imageButton: {
         height: 30,
