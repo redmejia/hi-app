@@ -6,7 +6,7 @@ export interface User {
     lastMsg?: string;
     isActive?: boolean;
 
-    avatar?: ImageProps;
+    avatar: ImageProps;
 }
 
 // test data

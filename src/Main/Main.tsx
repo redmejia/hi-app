@@ -42,7 +42,7 @@ export const Main = (): JSX.Element => {
             }
         })
 
-        
+
     }
 
 
@@ -66,7 +66,7 @@ export const Main = (): JSX.Element => {
             </SafeAreaView>
         )
     } else {
-    
+
 
         return (
             <SafeAreaView
