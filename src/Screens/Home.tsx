@@ -1,17 +1,9 @@
 import {
-    Button,
-    DrawerLayoutAndroid,
-    ScrollView,
-    StyleSheet,
-    Text,
-    TouchableOpacity,
-    View
+    Platform
 } from "react-native";
-import { Header } from "../Components/Hader";
-import { ChatList } from "../Components/ChatList";
 import { Navigathor } from "../Interface/navigationInterface";
-import { useRef } from "react";
 import { AndroidDrawer } from "../Components/AndroidDrawer";
+import { IOSDrawer } from "../Components/IOSDrawer";
 
 
 
@@ -19,13 +11,18 @@ import { AndroidDrawer } from "../Components/AndroidDrawer";
 
 export const Home = ({ navigate, navigation }: Navigathor): JSX.Element => {
 
+    if (Platform.OS === 'ios') {
+        return (
+            <>
+                <IOSDrawer
+                    navigation={navigation}
+                    navigate={navigate}
+                />
+            </>
+        )
+    }
     return (
         <>
-
-
-
-
-
             <AndroidDrawer
                 navigation={navigation}
                 navigate={navigate}
@@ -33,11 +30,11 @@ export const Home = ({ navigate, navigation }: Navigathor): JSX.Element => {
             {/* <ScrollView
                 showsVerticalScrollIndicator={false}
             > */}
-                {/* <Header
+            {/* <Header
                     navigation={navigation}
                     navigate={navigate}
                 /> */}
-                {/* <ChatList
+            {/* <ChatList
                     navigation={navigation}
                     navigate={navigate}
                 /> */}
