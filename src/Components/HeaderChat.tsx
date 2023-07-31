@@ -16,7 +16,7 @@ export const HeaderChat = ({ navigation, goBack }: Navigathor): JSX.Element => {
                     // navigate && navigate(navigation, true, 'home')}
                     goBack && goBack()
                 }}
-                buttonStyle={{ marginLeft: 10, marginRight: 5 }}
+                buttonStyle={{ marginLeft: 10, marginRight: 5, backgroundColor: '#33A3FF' }}
                 buttonContent={
                     <Image
                         source={require('../public/back.png')}

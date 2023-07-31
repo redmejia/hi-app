@@ -31,7 +31,7 @@ export const AndroidDrawer = ({ navigation, navigate }: Navigathor): JSX.Element
                 >
                     <Button
                         action={() => drawer.current?.closeDrawer()}
-                        buttonStyle={{ marginTop: 10 }}
+                        buttonStyle={{ marginTop: 10, backgroundColor: '#33A3FF' }}
                         buttonContent={
                             <Image
                                 source={require('../public/back.png')}
