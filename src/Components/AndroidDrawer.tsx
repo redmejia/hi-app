@@ -13,6 +13,7 @@ import { Navigathor } from "../Interface/navigationInterface";
 import { ChatList } from "./ChatList";
 import { Card } from "./Card";
 import { Button } from "../Components/Button";
+import { AppSetting } from "./AppSetting";
 
 
 export const AndroidDrawer = ({ navigation, navigate }: Navigathor): JSX.Element => {
@@ -22,13 +23,15 @@ export const AndroidDrawer = ({ navigation, navigate }: Navigathor): JSX.Element
     const navigationView = () => {
 
         return (
-            <View>
+            <View
+                style={{ flex: 1 }}
+            >
                 <View
                     style={styles.header}
                 >
                     <Button
                         action={() => drawer.current?.closeDrawer()}
-                        buttonStyle={{marginTop: 10}}
+                        buttonStyle={{ marginTop: 10 }}
                         buttonContent={
                             <Image
                                 source={require('../public/back.png')}
@@ -45,14 +48,8 @@ export const AndroidDrawer = ({ navigation, navigate }: Navigathor): JSX.Element
                         />
                     </TouchableOpacity>
                 </View>
-
-                <View>
-                    <View style={{ marginLeft: 10 }}>
-                        <Text>this</Text>
-                    </View>
-                </View>
+                <AppSetting />
             </View>
-
         )
     }
 
