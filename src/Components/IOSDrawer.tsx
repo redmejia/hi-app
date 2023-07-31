@@ -6,6 +6,7 @@ import { Header } from "./Hader";
 import { ChatList } from "./ChatList";
 import { Button } from "./Button";
 import { Card } from "./Card";
+import { AppSetting } from "./AppSetting";
 
 
 interface Props {
@@ -15,7 +16,9 @@ interface Props {
 const NavigationView = ({ action }: Props) => {
 
     return (
-        <View>
+        <View
+            style={{ flex: 1 }}
+        >
             <View
                 style={styles.header}
             >
@@ -38,14 +41,8 @@ const NavigationView = ({ action }: Props) => {
                     />
                 </TouchableOpacity>
             </View>
-
-            <View>
-                <View style={{ marginLeft: 10 }}>
-                    <Text>this</Text>
-                </View>
-            </View>
+            <AppSetting />
         </View>
-
     )
 }
 
