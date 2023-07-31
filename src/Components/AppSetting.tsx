@@ -1,4 +1,4 @@
-import { Text, View } from "react-native";
+import { Image, Text, View } from "react-native";
 import { Button } from "./Button";
 import { Divider } from "./Divider";
 
@@ -39,6 +39,16 @@ export const AppSetting = (): JSX.Element => {
                 <Text> Log out </Text>
                 <Button
                     action={() => console.log('log out')}
+                    buttonStyle={{
+                        justifyContent: 'center',
+                        alignItems: 'center'
+                    }}
+                    buttonContent={
+                        <Image
+                            source={require('../public/logout.png')}
+                            style={{ height: 25, width: 25 }}
+                        />
+                    }
                 />
             </View>
         </View>

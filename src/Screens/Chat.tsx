@@ -145,7 +145,7 @@ export const Chat = ({ navigation, navigate, goBack }: Navigathor): JSX.Element 
                                             setChat(text)
                                             setText("")
                                         }}
-
+                                        buttonStyle={{ backgroundColor: '#33A3FF'}}
                                         buttonContent={
                                             <Image
                                                 source={require('../public/next.png')}

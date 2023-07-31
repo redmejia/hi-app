@@ -24,7 +24,8 @@ const NavigationView = ({ action }: Props) => {
             >
                 <Button
                     action={action}
-                    buttonStyle={{ marginTop: 10 }}
+                    buttonActiveOpacity={0.10}
+                    buttonStyle={{ marginTop: 10, backgroundColor: '#33A3FF' }}
                     buttonContent={
                         <Image
                             source={require('../public/back.png')}
