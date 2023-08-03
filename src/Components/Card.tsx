@@ -31,7 +31,7 @@ export const Card = ({
 
                 <View style={{
                     ...styles.active,
-                    borderWidth: isActive ? 2 : 0,
+                    borderWidth: isActive ? 3 : 0,
                     // borderBottomWidth: isActive ? 2 : 0,
                     // borderColor: isActive ? 'green' : '#fff',
                 }}>

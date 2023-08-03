@@ -2,9 +2,12 @@ import { Image, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import { Card } from "./Card";
 import { Navigathor } from "../Interface/navigationInterface";
 import { Button } from "./Button";
+import { useContext } from "react";
+import { ThemeContext } from "../Context/ThemeContex";
 
 export const HeaderChat = ({ navigation, goBack }: Navigathor): JSX.Element => {
 
+    const {theme} = useContext(ThemeContext)
     return (
 
         <View
@@ -16,11 +19,11 @@ export const HeaderChat = ({ navigation, goBack }: Navigathor): JSX.Element => {
                     // navigate && navigate(navigation, true, 'home')}
                     goBack && goBack()
                 }}
-                buttonStyle={{ marginLeft: 10, marginRight: 5, backgroundColor: '#33A3FF' }}
+                buttonStyle={{ marginLeft: 10, marginRight: 5, backgroundColor: theme.btnBackground }}
                 buttonContent={
                     <Image
                         source={require('../public/back.png')}
-                        style={styles.imageButton}
+                        style={{...styles.imageButton, backgroundColor: theme.primary}}
                     />
                 }
             />
@@ -31,7 +34,7 @@ export const HeaderChat = ({ navigation, goBack }: Navigathor): JSX.Element => {
                 }}
                 userComponent={
                     <View>
-                        <Text style={styles.cardText}> {navigation.params?.name} {navigation.params?.last} </Text>
+                        <Text style={{...styles.cardText, color : theme.text}}> {navigation.params?.name} {navigation.params?.last} </Text>
                     </View>
                 }
                 avatar={navigation.params?.avatar || require('../public/avatar.png')}

@@ -2,14 +2,15 @@ import { SafeAreaView, Platform, Text, View, Button } from "react-native";
 
 import { Home } from "../Screens/Home";
 import { Chat } from "../Screens/Chat";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { Navigathor, Navigation } from "../Interface/navigationInterface";
 import { User } from "../Interface/chatInterface";
+import { ThemeContext } from "../Context/ThemeContex";
 
 
 export const Main = (): JSX.Element => {
 
-
+    const {theme} = useContext(ThemeContext)
 
     const [navigation, setNavigation] = useState<Navigathor>({
         navigation: {
@@ -57,7 +58,7 @@ export const Main = (): JSX.Element => {
 
         return (
             <SafeAreaView
-                style={{ flex: 1, marginBottom: Platform.OS === "ios" ? 30 : 0 }}
+                style={{ flex: 1, marginBottom: Platform.OS === "ios" ? 0 : 0, backgroundColor: theme.background }} // fix I think  margin not need 
             >
                 <Home
                     navigation={navigation.navigation}
@@ -70,7 +71,7 @@ export const Main = (): JSX.Element => {
 
         return (
             <SafeAreaView
-                style={{ flex: 1, marginBottom: Platform.OS === "ios" ? 30 : 0, backgroundColor: '#fff' }}
+                style={{ flex: 1, marginBottom: Platform.OS === "ios" ? 0 : 0, backgroundColor: theme.background }} // fix I think margin not need 
             >
                 {/* <Home /> */}
 
