@@ -12,9 +12,10 @@ import {
     Image,
 } from "react-native";
 import { HeaderChat } from "../Components/HeaderChat";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { Navigathor } from "../Interface/navigationInterface";
 import { Button } from "../Components/Button";
+import { ThemeContext } from "../Context/ThemeContex";
 
 
 
@@ -40,7 +41,7 @@ export const Chat = ({ navigation, navigate, goBack }: Navigathor): JSX.Element 
     const [send, setSend] = useState<boolean>(false)
 
 
-
+    const { theme } = useContext(ThemeContext)
 
 
     const { width } = useWindowDimensions()
@@ -48,7 +49,7 @@ export const Chat = ({ navigation, navigate, goBack }: Navigathor): JSX.Element 
 
 
     return (
-        <View style={{ flex: 1 }} >
+        <View style={{ flex: 1, backgroundColor: theme.background }} >
 
             <View
                 style={{ paddingVertical: 5, borderBottomWidth: 1 }}
@@ -75,13 +76,13 @@ export const Chat = ({ navigation, navigate, goBack }: Navigathor): JSX.Element 
                         <View
                             style={{
                                 ...styles.chatBox,
-                                backgroundColor: '#E5E5EA',
+                                backgroundColor: theme.primary,
                                 margin: 10,
                                 marginRight: width / 2,
                                 height: lenMessage(navigation.params?.lastMsg)
                             }}
                         >
-                            <Text>{navigation.params?.lastMsg}</Text>
+                            <Text style={{ color: theme.text }}>{navigation.params?.lastMsg}</Text>
 
                         </View>
                     )
@@ -95,13 +96,14 @@ export const Chat = ({ navigation, navigate, goBack }: Navigathor): JSX.Element 
                             ...styles.chatBox,
                             margin: 10,
                             marginTop: 20,
+                            backgroundColor: theme.primary,
                             // alignItems: 'center',
                             marginLeft: width / 2,
                             height: lenMessage(chat)
                         }}
                     >
                         <Text
-                            style={{ ...styles.chatText }}
+                            style={{ ...styles.chatText, color: theme.text }}
                         >{chat}</Text>
                     </View>
                 }
@@ -117,23 +119,28 @@ export const Chat = ({ navigation, navigate, goBack }: Navigathor): JSX.Element 
                         style={{
                             padding: 10,
                             bottom: Platform.OS === 'ios' ? 60 : 0,
-                            backgroundColor: '#fff',
+                            backgroundColor: theme.background,
 
                         }}
                     >
                         <View
                             style={{
-                                backgroundColor: '#fff',
+                                backgroundColor: theme.background,
                                 flexDirection: 'row',
-
                             }}
 
                         >
 
                             <TextInput
                                 placeholder="Say Hi"
+                                placeholderTextColor={theme.text}
                                 onChangeText={newText => setText(newText)}
-                                style={styles.textInput}
+                                style={{
+                                    ...styles.textInput,
+                                    fontWeight: '600',
+                                    color: theme.text,
+                                    backgroundColor: theme.lightDark
+                                }}
                                 value={text}
                             />
 
@@ -145,11 +152,11 @@ export const Chat = ({ navigation, navigate, goBack }: Navigathor): JSX.Element 
                                             setChat(text)
                                             setText("")
                                         }}
-                                        buttonStyle={{ backgroundColor: '#33A3FF'}}
+                                        buttonStyle={{ backgroundColor: theme.btnBackground }}
                                         buttonContent={
                                             <Image
                                                 source={require('../public/next.png')}
-                                                style={styles.imageButton}
+                                                style={{ ...styles.imageButton, backgroundColor: theme.primary }}
                                             />
                                         }
                                     />

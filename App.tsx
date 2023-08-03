@@ -7,12 +7,15 @@
 
 import React from 'react';
 import { Main } from './src/Main/Main';
+import { ThemeContextProvider } from './src/Context/ThemeContex';
 
 
 function App(): JSX.Element {
- 
+
   return (
-    <Main />
+    <ThemeContextProvider>
+      <Main />
+    </ThemeContextProvider>
   );
 }
 

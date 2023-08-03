@@ -1,4 +1,4 @@
-import { useRef } from "react";
+import { useContext, useRef } from "react";
 import {
     DrawerLayoutAndroid,
     Image,
@@ -14,28 +14,31 @@ import { ChatList } from "./ChatList";
 import { Card } from "./Card";
 import { Button } from "../Components/Button";
 import { AppSetting } from "./AppSetting";
+import { ThemeContext } from "../Context/ThemeContex";
 
 
 export const AndroidDrawer = ({ navigation, navigate }: Navigathor): JSX.Element => {
 
     const drawer = useRef<DrawerLayoutAndroid>(null);
 
+    const {theme, isActive} = useContext(ThemeContext);
+
     const navigationView = () => {
 
         return (
             <View
-                style={{ flex: 1 }}
+                style={{ flex: 1, backgroundColor: theme.background }}
             >
                 <View
                     style={styles.header}
                 >
                     <Button
                         action={() => drawer.current?.closeDrawer()}
-                        buttonStyle={{ marginTop: 10, backgroundColor: '#33A3FF' }}
+                        buttonStyle={{ marginTop: 10, backgroundColor: theme.btnBackground }}
                         buttonContent={
                             <Image
                                 source={require('../public/back.png')}
-                                style={styles.imageButton}
+                                style={{...styles.imageButton, backgroundColor: theme.primary, borderRadius: 100 }}
                             />
                         }
                     />
@@ -44,7 +47,7 @@ export const AndroidDrawer = ({ navigation, navigate }: Navigathor): JSX.Element
                             avatar={require('../public/avatar.png')}
                             imageStyle={{ width: 40, height: 40 }}
                             avatarContainer={{ height: 50, width: 50 }}
-                            isActive={true}
+                            isActive={isActive}
                         />
                     </TouchableOpacity>
                 </View>
@@ -61,7 +64,9 @@ export const AndroidDrawer = ({ navigation, navigate }: Navigathor): JSX.Element
             drawerWidth={300}
             drawerPosition={'left'}
             renderNavigationView={navigationView}>
-            <View>
+            <View 
+                style={{backgroundColor: theme.background}}
+            >
                 <ScrollView
                     showsVerticalScrollIndicator={false}
                 >
@@ -69,7 +74,7 @@ export const AndroidDrawer = ({ navigation, navigate }: Navigathor): JSX.Element
                         <Button
                             action={() => drawer.current?.openDrawer()}
                             buttonStyle={{
-                                backgroundColor: '#D1D7DC',
+                                backgroundColor: theme.primary,
                                 height: 26,
                                 width: 26,
                             }}
@@ -135,7 +140,7 @@ const styles = StyleSheet.create({
     imageButton: {
         height: 30,
         width: 30,
-        backgroundColor: '#fff',
-        borderRadius: 100
+        // backgroundColor: '',
+        // borderRadius: 100
     }
 });

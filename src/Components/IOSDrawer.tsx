@@ -1,4 +1,4 @@
-import { useRef } from "react";
+import { useContext, useRef } from "react";
 import { Animated, Image, ScrollView, StyleSheet, Text, TouchableOpacity, View, useWindowDimensions } from "react-native";
 import { Drawer } from "./Drawer";
 import { Navigathor } from "../Interface/navigationInterface";
@@ -7,6 +7,7 @@ import { ChatList } from "./ChatList";
 import { Button } from "./Button";
 import { Card } from "./Card";
 import { AppSetting } from "./AppSetting";
+import { ThemeContext } from "../Context/ThemeContex";
 
 
 interface Props {
@@ -15,21 +16,23 @@ interface Props {
 
 const NavigationView = ({ action }: Props) => {
 
+    const { theme, isActive } = useContext(ThemeContext)
+
     return (
         <View
-            style={{ flex: 1 }}
+            // style={{ flex: 1 }}
+            style={{ flex: 1, backgroundColor: theme.background }}
         >
             <View
                 style={styles.header}
             >
                 <Button
                     action={action}
-                    buttonActiveOpacity={0.10}
-                    buttonStyle={{ marginTop: 10, backgroundColor: '#33A3FF' }}
+                    buttonStyle={{ marginTop: 10, backgroundColor: theme.btnBackground}}
                     buttonContent={
                         <Image
                             source={require('../public/back.png')}
-                            style={styles.imageButton}
+                            style={{...styles.imageButton, backgroundColor: theme.primary,}}
                         />
                     }
                 />
@@ -38,7 +41,7 @@ const NavigationView = ({ action }: Props) => {
                         avatar={require('../public/avatar.png')}
                         imageStyle={{ width: 40, height: 40 }}
                         avatarContainer={{ height: 50, width: 50 }}
-                        isActive={true}
+                        isActive={isActive}
                     />
                 </TouchableOpacity>
             </View>
@@ -49,7 +52,7 @@ const NavigationView = ({ action }: Props) => {
 
 
 export const IOSDrawer = ({ navigation, navigate }: Navigathor): JSX.Element => {
-
+    const { theme } = useContext(ThemeContext)
 
     const slideToLeft = useRef(new Animated.Value(0)).current;
 
@@ -80,12 +83,13 @@ export const IOSDrawer = ({ navigation, navigate }: Navigathor): JSX.Element => 
             <View>
                 <ScrollView
                     showsVerticalScrollIndicator={false}
+                    style={{backgroundColor: theme.background}}
                 >
                     <View style={styles.header}>
                         <Button
                             action={open}
                             buttonStyle={{
-                                backgroundColor: '#D1D7DC',
+                                backgroundColor: theme.primary,
                                 height: 26,
                                 width: 26,
                             }}

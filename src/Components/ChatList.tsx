@@ -1,10 +1,15 @@
 import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import { Card } from "./Card";
-import {  userList } from "../Interface/chatInterface";
+import { userList } from "../Interface/chatInterface";
 import { Navigathor } from "../Interface/navigationInterface";
+import { useContext } from "react";
+import { ThemeContext } from "../Context/ThemeContex";
 
 
-export const ChatList = ({ navigation, navigate }:Navigathor): JSX.Element => {
+export const ChatList = ({ navigation, navigate }: Navigathor): JSX.Element => {
+
+    const { theme } = useContext(ThemeContext)
+
     const chatList = userList.map((user, index) => {
         return (
             <TouchableOpacity
@@ -13,16 +18,21 @@ export const ChatList = ({ navigation, navigate }:Navigathor): JSX.Element => {
                     // marginHorizontal: 2,
                     marginTop: 5
                 }}
-                onPress={() =>  navigate && navigate(navigation, false, 'chat', user)}
+                onPress={() => navigate && navigate(navigation, false, 'chat', user)}
             >
                 <Card
+
                     userComponent={
                         <View style={{ justifyContent: 'center' }}>
-                            <Text style={styles.text}>{user.name} {user.last}</Text>
                             <Text style={{
                                 ...styles.text,
+                                color: theme.text
+                            }}>{user.name} {user.last}</Text>
+                            <Text style={{
+                                ...styles.text,
+                                color: theme.text,
                                 fontSize: 13,
-                                fontWeight: '500'
+                                fontWeight: '700'
                             }}> {user.lastMsg}</Text>
                         </View>
                     }
@@ -35,7 +45,12 @@ export const ChatList = ({ navigation, navigate }:Navigathor): JSX.Element => {
     })
     return (
         <View
-            style={{ marginHorizontal: 10, marginTop: 2, marginBottom: 4 }}
+            style={{
+                marginHorizontal: 10,
+                marginTop: 2,
+                marginBottom: 4,
+                backgroundColor: theme.background
+            }}
         >
             {chatList}
         </View>
@@ -44,7 +59,7 @@ export const ChatList = ({ navigation, navigate }:Navigathor): JSX.Element => {
 
 const styles = StyleSheet.create({
     text: {
-        color: '#000',
+        // color: '#000',
         fontWeight: '600',
         fontSize: 11,
         marginLeft: 10

@@ -1,11 +1,15 @@
 import { ScrollView, StyleSheet, TextInput, View, TouchableOpacity, Text } from "react-native";
-import { Card  } from "./Card";
+import { Card } from "./Card";
 import { userList } from "../Interface/chatInterface";
 import { Navigathor } from "../Interface/navigationInterface";
+import { useContext } from "react";
+import { ThemeContext } from "../Context/ThemeContex";
 
 
 
-export const Header = ({navigation, navigate}:Navigathor): JSX.Element => {
+export const Header = ({ navigation, navigate }: Navigathor): JSX.Element => {
+
+    const { theme } = useContext(ThemeContext)
 
     const list = userList.map((user, index) => {
         return (
@@ -16,15 +20,15 @@ export const Header = ({navigation, navigate}:Navigathor): JSX.Element => {
                     marginTop: 2,
                     justifyContent: 'flex-start',
                 }}
-                onPress={() =>  navigate && navigate(navigation, false, 'chat', user)}
+                onPress={() => navigate && navigate(navigation, false, 'chat', user)}
             >
                 <Card
                     // name={user.name}
                     // last={user.last}
                     userComponent={
                         <View style={{ justifyContent: 'center', alignItems: 'center' }}>
-                            <Text style={styles.text}>{user.name}</Text>
-                            <Text style={styles.text}>{user.last}</Text>
+                            <Text style={{...styles.text, color: theme.text}}>{user.name}</Text>
+                            <Text style={{...styles.text, color: theme.text}}>{user.last}</Text>
                         </View>
                     }
                     avatar={user.avatar}
@@ -37,9 +41,11 @@ export const Header = ({navigation, navigate}:Navigathor): JSX.Element => {
 
     return (
         <View style={styles.container}>
-            <View style={styles.search} >
+            <View style={{...styles.search, backgroundColor: theme.lightDark}} >
                 <TextInput
                     placeholder="Search"
+                    placeholderTextColor={theme.text}
+                    style={{color: theme.text, fontWeight: "bold"}}
                 />
             </View>
             <View style={styles.userListBox} >
