@@ -5,6 +5,7 @@ export type colors = {
     text: string,
     border: string,
     lightDark: string,
+    iosDrawerBG: string // ios drawer only
 }
 // default
 export const lightThemeColors: colors = {
@@ -13,7 +14,8 @@ export const lightThemeColors: colors = {
     primary: '#D1D7DC',
     btnBackground: '#33A3FF',
     text: '#000',
-    lightDark: '#D1D7DC'
+    lightDark: '#D1D7DC',
+    iosDrawerBG: 'rgba(255, 255, 255, 0.7)'
 }
 
 export const darkThemeColors: colors = {
@@ -22,5 +24,7 @@ export const darkThemeColors: colors = {
     primary: '#33A3FF',
     btnBackground: '#D1D7DC',
     text: '#fff',
-    lightDark: '#363636'
+    lightDark: '#363636',
+    iosDrawerBG: 'rgba(0, 0, 0, 0.4)'
+
 }

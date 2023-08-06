@@ -25,7 +25,8 @@ export const initState: ThemeState = {
         primary: '#D1D7DC',
         btnBackground: '#33A3FF',
         text: '#000',
-        lightDark: '#D1D7DC'
+        lightDark: '#D1D7DC',
+        iosDrawerBG: 'rgba(255, 255, 255, 0.7)'
     }
 }
 

@@ -1,4 +1,4 @@
-import { Image, Text, View } from "react-native";
+import { Image, Platform, Text, View } from "react-native";
 import { Button } from "./Button";
 import { Divider } from "./Divider";
 import { useContext } from "react";
@@ -89,7 +89,7 @@ export const AppSetting = (): JSX.Element => {
             <View
                 style={{
                     position: 'absolute',
-                    bottom: 40,
+                    bottom: Platform.OS === 'ios' ? 70 : 40,
                     right: 20
 
                 }}
@@ -111,7 +111,7 @@ export const AppSetting = (): JSX.Element => {
                         // />
                         <View
                             style={{
-                                
+
                                 alignItems: 'center',
                                 backgroundColor: theme.primary,
                                 borderRadius: 15,
